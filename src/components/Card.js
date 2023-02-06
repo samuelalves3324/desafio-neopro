@@ -4,12 +4,12 @@ export default function Card({cardName, fullName, cardNumber, brand}) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.cardName}>{cardName}</Text>
+        <Text style={styles.cardName}>{cardName ? cardName : 'Nome do cartão'}</Text>
         <Text style={styles.brand}>{brand}</Text>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.fullName}>{fullName}</Text>
-        <Text style={styles.cardNumber}>{cardNumber}</Text>
+        <Text style={styles.fullName}>{fullName ? fullName : 'Nome completo'}</Text>
+        <Text style={styles.cardNumber}>{cardNumber ? cardNumber : '1234 1234 1234 1234'}</Text>
       </View>
     </View>
   );

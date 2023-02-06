@@ -1,12 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import AddCardForm from '../components/AddCardForm';
 import Card from '../components/Card';
+import { useState } from 'react';
 
 export default function AddCards() {
+  const [cardName, setCardName] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Adicionar cartão</Text>
-      <Card cardName="Cartão de compras" fullName="Samuel Alves" cardNumber="5502 7845 1212" brand="Bandeira"/>
-    </View>
+    <ScrollView style={styles.container}>
+      <View>
+        <Text style={styles.title}>Adicionar cartão</Text>
+        <Card
+          cardName={cardName}
+          fullName={fullName}
+          cardNumber={cardNumber}
+          brand="Bandeira"
+        />
+        <AddCardForm names={{cardName, fullName, cardNumber}} funcs={{setCardName, setFullName, setCardNumber}}/>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -14,6 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 30,
