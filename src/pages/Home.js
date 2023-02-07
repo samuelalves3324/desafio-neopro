@@ -1,23 +1,22 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import Card from '../components/Card';
+import { useDispatch } from 'react-redux';
+import Slider from '../components/Slider';
 import { changeCardNumbersVisibility } from '../redux/actions';
 
+
 export default function Home({ navigation }) {
-  const cards = useSelector(state => state.addCardReducer.cards);
-  const hidden = useSelector(state => state.changeVisibilityReducer.hidden);
   const dispatch = useDispatch();
   return (
     <ScrollView style={styles.container}>
       <View>
         <View style={styles.header}>
           <Text style={styles.title}>Cartões</Text>
-          <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('AddCards') }>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AddCards')}>
             <Text style={styles.buttonTitle}>+</Text>
           </TouchableOpacity>
         </View>
-          { cards.map((item) => <Card fullName={item.fullName} cardName={item.cardName} cardNumber={ hidden ? '**** **** **** ****' : item.cardNumber}/>) }
-        <TouchableOpacity style={styles.hideButton} onPress={ () => dispatch(changeCardNumbersVisibility()) }>
+        <Slider />
+        <TouchableOpacity style={styles.hideButton} onPress={() => dispatch(changeCardNumbersVisibility())}>
           <Text style={styles.hideButtonTitle}>ESCONDER NÚMERO</Text>
         </TouchableOpacity>
       </View>
@@ -61,5 +60,5 @@ const styles = StyleSheet.create({
   hideButtonTitle: {
     fontSize: 15,
     fontWeight: 'bold',
-  }
+  },
 });

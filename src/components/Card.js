@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 
-export default function Card({cardName, fullName, cardNumber, brand}) {
+const { height, width } = Dimensions.get('window');
+
+export default function Card({ cardName, fullName, cardNumber, brand }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -17,10 +19,10 @@ export default function Card({cardName, fullName, cardNumber, brand}) {
 
 const styles = StyleSheet.create({
   container: {
-    margin: '5%',
-    padding: '5%',
-    width: '90%',
-    height: 200,
+    margin: width * 0.04,
+    width: width * 0.9,
+    height: height * 0.33,
+    padding: height * 0.04,
     borderRadius: 20,
     backgroundColor: '#424242',
   },
