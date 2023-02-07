@@ -11,5 +11,5 @@ export const addCard = ({cardName, fullName, cardNumber}) => ({
 });
 
 export const changeCardNumbersVisibility = () => ({
-  type: HIDE_CARD_NUMBER,
+  type: CHANGE_CARD_NUMBERS_VISIBILITY,
 });
