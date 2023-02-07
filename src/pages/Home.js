@@ -1,15 +1,21 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { useSelector } from 'react-redux';
+import Card from '../components/Card';
 
 export default function Home({ navigation }) {
+  const cards = useSelector(state => state.addCardReducer.cards);
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Cartões</Text>
-        <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('AddCards') }>
-          <Text style={styles.buttonTitle}>+</Text>
-        </TouchableOpacity>
+    <ScrollView style={styles.container}>
+      <View>
+        <View style={styles.header}>
+          <Text style={styles.title}>Cartões</Text>
+          <TouchableOpacity style={styles.button} onPress={ () => navigation.navigate('AddCards') }>
+            <Text style={styles.buttonTitle}>+</Text>
+          </TouchableOpacity>
+        </View>
+          { cards.map((item) => <Card fullName={item.fullName} cardName={item.cardName} cardNumber={item.cardNumber}/>) }
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
