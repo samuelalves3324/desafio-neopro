@@ -3,10 +3,14 @@ import { TextInputMask } from 'react-native-masked-text';
 import { addCard } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 
-export default function AddCardForm({names, funcs}) {
+export default function AddCardForm({names, funcs, navigation}) {
   const { cardName, fullName, cardNumber } = names;
   const { setCardName, setFullName, setCardNumber } = funcs;
   const dispatch = useDispatch();
+  const addCardButtomClick = () => {
+    dispatch(addCard({cardName, cardNumber, fullName}));
+    navigation.navigate('Home')
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.label}>NOME DO CARTÃO</Text>
@@ -34,7 +38,7 @@ export default function AddCardForm({names, funcs}) {
         value={cardNumber}
         onChangeText={ text => setCardNumber(text) }
       />
-      <TouchableOpacity style={styles.button} onPress={ () => dispatch(addCard({cardName, cardNumber, fullName})) }>
+      <TouchableOpacity style={styles.button} onPress={ addCardButtomClick }>
         <Text style={styles.buttonTitle}>Adicionar</Text>
       </TouchableOpacity>
     </View>

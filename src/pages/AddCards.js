@@ -3,7 +3,7 @@ import AddCardForm from '../components/AddCardForm';
 import Card from '../components/Card';
 import { useState } from 'react';
 
-export default function AddCards() {
+export default function AddCards({ navigation }) {
   const [cardName, setCardName] = useState('');
   const [fullName, setFullName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -17,7 +17,7 @@ export default function AddCards() {
           cardNumber={cardNumber}
           brand="Bandeira"
         />
-        <AddCardForm names={{cardName, fullName, cardNumber}} funcs={{setCardName, setFullName, setCardNumber}}/>
+        <AddCardForm navigation={navigation} names={{cardName, fullName, cardNumber}} funcs={{setCardName, setFullName, setCardNumber}}/>
       </View>
     </ScrollView>
   );
