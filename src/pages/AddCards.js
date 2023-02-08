@@ -15,7 +15,6 @@ export default function AddCards({ navigation }) {
           cardName={cardName}
           fullName={fullName}
           cardNumber={cardNumber}
-          brand="Bandeira"
         />
         <AddCardForm navigation={navigation} names={{cardName, fullName, cardNumber}} funcs={{setCardName, setFullName, setCardNumber}}/>
       </View>
@@ -27,7 +26,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
-    backgroundColor: '#fff',
   },
   title: {
     fontSize: 30,

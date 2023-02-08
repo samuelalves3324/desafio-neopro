@@ -1,15 +1,32 @@
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-export default function Card({ cardName, fullName, cardNumber, brand }) {
+const brands = {
+  '63': require('../images/elo.png'),
+  '55': require('../images/mastercard.png'),
+  '41': require('../images/visa.png'),
+  '60': require('../images/hipercard.png'),
+};
+
+const getBrand = (number) => {
+  if(number && number.length >= 2){
+    const prefix = number.substring(0, 2);
+    return brands.hasOwnProperty(prefix) ? brands[prefix] : 'Bandeira';
+  }
+  return 'Bandeira';
+}
+
+export default function Card({ cardName, fullName, cardNumber }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.cardName}>{cardName ? cardName : 'Nome do cartão'}</Text>
-        <Text style={styles.brand}>{brand}</Text>
+        { getBrand(cardNumber) === 'Bandeira' ? 
+        <Text style={styles.brand}>Bandeira</Text> 
+        : <Image style={styles.brandImg} source={getBrand(cardNumber)}/> }
       </View>
-      <View style={styles.footer}>
+      <View>
         <Text style={styles.fullName}>{fullName ? fullName : 'Nome completo'}</Text>
         <Text style={styles.cardNumber}>{cardNumber ? cardNumber : '1234 1234 1234 1234'}</Text>
       </View>
@@ -24,14 +41,14 @@ const styles = StyleSheet.create({
     height: height * 0.33,
     padding: height * 0.04,
     borderRadius: 20,
-    backgroundColor: '#424242',
+    backgroundColor: 'grey',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  footer: {
-    marginTop: 90,
+    alignItems: 'flex-start'
   },
   cardName: {
     color: '#fff',
@@ -51,5 +68,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  brandImg: {
+    width: 50,
+    height: 50,
+    marginTop: -(height*0.02),
   }
 });
