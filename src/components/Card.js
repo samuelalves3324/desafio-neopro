@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
 import { useSelector } from 'react-redux';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { height, width } = Dimensions.get('window');
 
@@ -11,7 +12,7 @@ const brands = {
 };
 
 const getBrand = (number) => {
-  if(number && number.length >= 2){
+  if (number && number.length >= 2) {
     const prefix = number.substring(0, 2);
     return brands.hasOwnProperty(prefix) ? brands[prefix] : 'Bandeira';
   }
@@ -21,20 +22,25 @@ const getBrand = (number) => {
 export default function Card({ cardName, fullName, cardNumber }) {
   const hidden = useSelector(state => state.changeVisibilityReducer.hidden);
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.cardName}>{cardName ? cardName : 'Nome do cartão'}</Text>
-        { getBrand(cardNumber) === 'Bandeira' ? 
-        <Text style={styles.brand}>Bandeira</Text> 
-        : <Image style={styles.brandImg} source={getBrand(cardNumber)}/> }
-      </View>
-      <View style={styles.footer}>
-        <Text style={styles.fullName}>{fullName ? fullName : 'Nome completo'}</Text>
-        { hidden ? 
-        <Text style={styles.cardNumber}>●●●● ●●●● ●●●● ●●●●</Text> 
-        : <Text style={styles.cardNumber}>{cardNumber ? cardNumber : '1234 1234 1234 1234'}</Text>}
-      </View>
-    </View>
+      <LinearGradient
+      style={styles.container}
+      colors={['#EC008C', '#FC6767']}
+      start={{x: 1, y: 0}}
+      end={{x: 0, y: 1}}
+      >
+        <View style={styles.header}>
+          <Text style={styles.cardName}>{cardName ? cardName : 'Nome do cartão'}</Text>
+          {getBrand(cardNumber) === 'Bandeira' ?
+            <Text style={styles.brand}>Bandeira</Text>
+            : <Image style={styles.brandImg} source={getBrand(cardNumber)} />}
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.fullName}>{fullName ? fullName : 'Nome completo'}</Text>
+          {hidden ?
+            <Text style={styles.cardNumber}>●●●● ●●●● ●●●● ●●●●</Text>
+            : <Text style={styles.cardNumber}>{cardNumber ? cardNumber : '1234 1234 1234 1234'}</Text>}
+        </View>
+      </LinearGradient>
   );
 };
 
@@ -76,6 +82,6 @@ const styles = StyleSheet.create({
   brandImg: {
     width: 50,
     height: 50,
-    marginTop: -(height*0.02),
+    marginTop: -(height * 0.02),
   },
 });

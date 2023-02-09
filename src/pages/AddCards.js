@@ -16,7 +16,7 @@ export default function AddCards({ navigation }) {
           fullName={fullName}
           cardNumber={cardNumber}
         />
-        <AddCardForm navigation={navigation} names={{cardName, fullName, cardNumber}} funcs={{setCardName, setFullName, setCardNumber}}/>
+        <AddCardForm navigation={navigation} names={{ cardName, fullName, cardNumber }} funcs={{ setCardName, setFullName, setCardNumber }} />
       </View>
     </ScrollView>
   );

@@ -6,13 +6,13 @@ export default function HideBtn({ hideButtomClick }) {
   const hidden = useSelector(state => state.changeVisibilityReducer.hidden);
   return (
     <TouchableOpacity style={styles.hideButton} onPress={hideButtomClick}>
-          {hidden ?
-            <Image style={styles.hideButtonImg} source={require(`../images/hide.png`)} />
-            : <Image style={styles.hideButtonImg} source={require(`../images/view.png`)} />}
-          {hidden ?
-            <Text style={styles.hideButtonTitle}>MOSTRAR NÚMERO</Text>
-            : <Text style={styles.hideButtonTitle}>ESCONDER NÚMERO</Text>}
-        </TouchableOpacity>
+      {hidden ?
+        <Image style={styles.hideButtonImg} source={require(`../images/hide.png`)} />
+        : <Image style={styles.hideButtonImg} source={require(`../images/view.png`)} />}
+      {hidden ?
+        <Text style={styles.hideButtonTitle}>MOSTRAR NÚMERO</Text>
+        : <Text style={styles.hideButtonTitle}>ESCONDER NÚMERO</Text>}
+    </TouchableOpacity>
   );
 };
 

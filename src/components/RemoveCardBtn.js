@@ -4,12 +4,12 @@ import { StyleSheet } from "react-native";
 export default function RemoveCardBtn({ removeCardButtomClick }) {
   return (
     <TouchableOpacity
-        style={styles.removeCardButton}
-        onPress={removeCardButtomClick}
-      >
-        <Image style={styles.removeCardButtonImg} source={require('../images/bin.png')} />
-        <Text style={styles.removeCardButtonTitle}>APAGAR CARTÃO</Text>
-      </TouchableOpacity>
+      style={styles.removeCardButton}
+      onPress={removeCardButtomClick}
+    >
+      <Image style={styles.removeCardButtonImg} source={require('../images/bin.png')} />
+      <Text style={styles.removeCardButtonTitle}>APAGAR CARTÃO</Text>
+    </TouchableOpacity>
   );
 }
 

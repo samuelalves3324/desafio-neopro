@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import { addCard } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 
-export default function AddCardForm({names, funcs, navigation}) {
+export default function AddCardForm({ names, funcs, navigation }) {
   const { cardName, fullName, cardNumber } = names;
   const { setCardName, setFullName, setCardNumber } = funcs;
   const dispatch = useDispatch();
   const addCardButtomClick = () => {
-    dispatch(addCard({cardName, cardNumber, fullName}));
+    dispatch(addCard({ cardName, cardNumber, fullName }));
     navigation.navigate('Home');
   }
   return (
@@ -19,7 +19,7 @@ export default function AddCardForm({names, funcs, navigation}) {
         placeholderTextColor="black"
         style={styles.input}
         value={cardName}
-        onChangeText={ text => setCardName(text) }
+        onChangeText={text => setCardName(text)}
       />
       <Text style={styles.label}>NOME COMPLETO</Text>
       <TextInput
@@ -27,7 +27,7 @@ export default function AddCardForm({names, funcs, navigation}) {
         placeholderTextColor="black"
         style={styles.input}
         value={fullName}
-        onChangeText={ text => setFullName(text) }
+        onChangeText={text => setFullName(text)}
       />
       <Text style={styles.label}>NÚMERO</Text>
       <TextInputMask
@@ -36,9 +36,9 @@ export default function AddCardForm({names, funcs, navigation}) {
         type='credit-card'
         style={styles.input}
         value={cardNumber}
-        onChangeText={ text => setCardNumber(text) }
+        onChangeText={text => setCardNumber(text)}
       />
-      <TouchableOpacity style={styles.button} onPress={ addCardButtomClick }>
+      <TouchableOpacity style={styles.button} onPress={addCardButtomClick}>
         <Text style={styles.buttonTitle}>Adicionar</Text>
       </TouchableOpacity>
     </View>

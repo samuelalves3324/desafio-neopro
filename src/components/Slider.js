@@ -11,8 +11,8 @@ const { width } = Dimensions.get('window');
 const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 
 export default function Slider() {
-  const cards = useSelector(state => state.cardsReducer.cards);
   const dispatch = useDispatch();
+  const cards = useSelector(state => state.cardsReducer.cards);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeId, setActiveId] = useState(0);
   let flastListRef = useRef();
@@ -20,11 +20,11 @@ export default function Slider() {
     flastListRef.current?.scrollToIndex({ animated: true, index, })
   }
   const removeCardButtomClick = () => {
-    if(cards.length === 1) {
+    if (cards.length === 1) {
       dispatch(removeCard(cards[0].id));
-    } else if(cards.length > 1 && currentIndex === 0) {
+    } else if (cards.length > 1 && currentIndex === 0) {
       dispatch(removeCard(cards[0].id));
-    } else if(cards.length > 1 ){
+    } else if (cards.length > 1) {
       dispatch(removeCard(activeId));
       scrollToIndex(currentIndex - 1);
     }
@@ -70,8 +70,8 @@ export default function Slider() {
         </View>
       }
       <Text style={styles.actionsTitle}>Ações</Text>
-      <HideBtn hideButtomClick={hideButtonClick}/>
-      <RemoveCardBtn removeCardButtomClick={removeCardButtomClick}/>
+      <HideBtn hideButtomClick={hideButtonClick} />
+      <RemoveCardBtn removeCardButtomClick={removeCardButtomClick} />
     </View>
   )
 }
