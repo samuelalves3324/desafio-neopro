@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const { height, width } = Dimensions.get('window');
 
@@ -18,6 +19,7 @@ const getBrand = (number) => {
 }
 
 export default function Card({ cardName, fullName, cardNumber }) {
+  const hidden = useSelector(state => state.changeVisibilityReducer.hidden);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -28,7 +30,9 @@ export default function Card({ cardName, fullName, cardNumber }) {
       </View>
       <View>
         <Text style={styles.fullName}>{fullName ? fullName : 'Nome completo'}</Text>
-        <Text style={styles.cardNumber}>{cardNumber ? cardNumber : '1234 1234 1234 1234'}</Text>
+        { hidden ? 
+        <Text style={styles.cardNumber}>●●●● ●●●● ●●●● ●●●●</Text> 
+        : <Text style={styles.cardNumber}>{cardNumber ? cardNumber : '1234 1234 1234 1234'}</Text>}
       </View>
     </View>
   );

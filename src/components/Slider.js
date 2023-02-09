@@ -16,9 +16,8 @@ export default function Slider() {
     }
   }).current;
   const cards = useSelector(state => state.addCardReducer.cards);
-  const hidden = useSelector(state => state.changeVisibilityReducer.hidden);
   const renderItems = ({ item }) => (
-    <Card cardName={item.cardName} fullName={item.fullName} cardNumber={hidden ? '**** **** **** ****' : item.cardNumber} />
+    <Card cardName={item.cardName} fullName={item.fullName} cardNumber={item.cardNumber} />
   )
   return (
     <View>
