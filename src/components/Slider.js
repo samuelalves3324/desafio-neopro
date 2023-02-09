@@ -13,16 +13,20 @@ const viewConfigRef = { viewAreaCoveragePercentThreshold: 95 };
 export default function Slider() {
   const cards = useSelector(state => state.cardsReducer.cards);
   const dispatch = useDispatch();
-  const [currentIndex, setcurrentIndex] = useState(0);
-  const [activeIndex, setactiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeId, setActiveId] = useState(0);
   let flastListRef = useRef();
   const scrollToIndex = (index) => {
     flastListRef.current?.scrollToIndex({ animated: true, index, })
   }
   const removeCardButtomClick = () => {
-    if(cards.length > 0) {
-      dispatch(removeCard(activeIndex));
-      scrollToIndex(0);
+    if(cards.length === 1) {
+      dispatch(removeCard(cards[0].id));
+    } else if(cards.length > 1 && currentIndex === 0) {
+      dispatch(removeCard(cards[0].id));
+    } else if(cards.length > 1 ){
+      dispatch(removeCard(activeId));
+      scrollToIndex(currentIndex - 1);
     }
   }
   const hideButtonClick = () => {
@@ -30,8 +34,8 @@ export default function Slider() {
   }
   const onViewRef = useRef(({ viewableItems }) => {
     if (viewableItems[0]?.hasOwnProperty('index')) {
-      setcurrentIndex(viewableItems[0].index);
-      setactiveIndex(viewableItems[0].item.id);
+      setCurrentIndex(viewableItems[0].index);
+      setActiveId(viewableItems[0].item.id);
     }
   }).current;
   const renderItems = ({ item }) => (
