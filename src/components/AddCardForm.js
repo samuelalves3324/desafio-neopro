@@ -9,7 +9,7 @@ export default function AddCardForm({names, funcs, navigation}) {
   const dispatch = useDispatch();
   const addCardButtomClick = () => {
     dispatch(addCard({cardName, cardNumber, fullName}));
-    navigation.navigate('Home')
+    navigation.navigate('Home');
   }
   return (
     <View style={styles.container}>

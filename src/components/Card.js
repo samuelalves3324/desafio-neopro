@@ -28,7 +28,7 @@ export default function Card({ cardName, fullName, cardNumber }) {
         <Text style={styles.brand}>Bandeira</Text> 
         : <Image style={styles.brandImg} source={getBrand(cardNumber)}/> }
       </View>
-      <View>
+      <View style={styles.footer}>
         <Text style={styles.fullName}>{fullName ? fullName : 'Nome completo'}</Text>
         { hidden ? 
         <Text style={styles.cardNumber}>●●●● ●●●● ●●●● ●●●●</Text> 
@@ -77,5 +77,5 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     marginTop: -(height*0.02),
-  }
+  },
 });
